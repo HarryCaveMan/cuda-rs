@@ -1,7 +1,7 @@
 [package]
 name = "cuda-rs"
-version = "0.1.9"
-authors = ["Ming Yang <ymviv@qq.com>"]
+version = "12.7.0"
+authors = ["Ming Yang <ymviv@qq.com>","Harris Joseph <harris.joseph.088@gmail.com>"]
 description = "A safe rust wrapper for CUDA Driver/Runtime APIs"
 repository = "https://github.com/vivym/cuda-rs"
 readme = "README.md"
@@ -12,7 +12,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cuda-rs-sys = "0.1"
+cuda-rs-sys = { package = "cuda-rs-sys", version= "0.2", git = "https://github.com/HarryCaveMan/cuda-rs.git", branch = "upgrade_deprecated" }
 enum_primitive = "0.1"
 num-traits = "0.2"
 thiserror = "1"

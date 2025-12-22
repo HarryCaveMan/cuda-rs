@@ -1,7 +1,7 @@
 [package]
 name = "cuda-rs-sys"
-version = "0.1.1"
-authors = ["Ming Yang <ymviv@qq.com>"]
+version = "0.2.0"
+authors = ["Ming Yang <ymviv@qq.com>","Harris Joseph <harris.joseph.088@gmail.com>"]
 description = "Rust binding to CUDA Driver/Runtime APIs"
 repository = "https://github.com/vivym/cuda-rs"
 readme = "README.md"

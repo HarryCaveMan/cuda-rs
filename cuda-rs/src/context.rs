@@ -24,7 +24,7 @@ impl CuContext {
     pub fn new(device: &CuDevice) -> CuResult<Self> {
         let mut ctx = std::ptr::null_mut();
         let res = unsafe {
-            ffi::cuCtxCreate_v2(&mut ctx, 0, device.get_raw())
+            ffi::cuCtxCreate(&mut ctx, 0, device.get_raw())
         };
         let ctx = CuContext(Inner::Owned(Arc::new(CUcontext(ctx))));
 
@@ -63,7 +63,7 @@ impl CuContext {
     pub fn push(&self) -> CuResult<()> {
         let res = unsafe {
             let ctx = self.get_raw();
-            ffi::cuCtxPushCurrent_v2(ctx)
+            ffi::cuCtxPushCurrent(ctx)
         };
 
         wrap!((), res)
@@ -71,7 +71,7 @@ impl CuContext {
 
     pub fn pop() -> CuResult<()> {
         let res = unsafe {
-            ffi::cuCtxPopCurrent_v2(&mut std::ptr::null_mut())
+            ffi::cuCtxPopCurrent(&mut std::ptr::null_mut())
         };
 
         wrap!((), res)
