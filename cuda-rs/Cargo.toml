@@ -1,6 +1,6 @@
 [package]
 name = "cuda-rs"
-version = "12.7.0"
+version = "13.0.1"
 authors = ["Ming Yang <ymviv@qq.com>","Harris Joseph <harris.joseph.088@gmail.com>"]
 description = "A safe rust wrapper for CUDA Driver/Runtime APIs"
 repository = "https://github.com/vivym/cuda-rs"

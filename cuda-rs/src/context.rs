@@ -63,7 +63,7 @@ impl CuContext {
     pub fn push(&self) -> CuResult<()> {
         let res = unsafe {
             let ctx = self.get_raw();
-            ffi::cuCtxPushCurrent(ctx)
+            ffi::cuCtxPushCurrent_v2(ctx)
         };
 
         wrap!((), res)
@@ -71,7 +71,7 @@ impl CuContext {
 
     pub fn pop() -> CuResult<()> {
         let res = unsafe {
-            ffi::cuCtxPopCurrent(&mut std::ptr::null_mut())
+            ffi::cuCtxPopCurrent_v2(&mut std::ptr::null_mut())
         };
 
         wrap!((), res)
