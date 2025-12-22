@@ -23,8 +23,13 @@ pub struct CuContext(Inner);
 impl CuContext {
     pub fn new(device: &CuDevice) -> CuResult<Self> {
         let mut ctx = std::ptr::null_mut();
+        let params: ffi::CUctxCreateParams = ffi::CUctxCreateParams {
+            execAffinityParams: {0} as *mut ffi::CUexecAffinityParam,
+            numAffinityParams: 1 as std::os::raw::c_int,
+            cigParams: std::ptr::null_mut()
+        };
         let res = unsafe {
-            ffi::cuCtxCreate_v4(&mut ctx, 0, device.get_raw())
+            ffi::cuCtxCreate_v4(&mut ctx, &mut params, device.get_raw())
         };
         let ctx = CuContext(Inner::Owned(Arc::new(CUcontext(ctx))));
 
