@@ -32,7 +32,7 @@ fn main() {
 
     println!("cargo:rustc-link-arg=-Wl,-rpath,{}", cuda_lib_dir.to_string_lossy());
     println!("cargo:rustc-link-arg=-L{}", cuda_lib_dir.to_string_lossy());
-    println!("cargo:rustc-link-lib=cuda");
+    println!("cargo:rustc-link-lib=cudart");
 
     let bindings = bindgen::Builder::default()
         .clang_arg(format!("-I{}", cuda_include.to_string_lossy()))
