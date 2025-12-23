@@ -23,18 +23,18 @@ pub struct CuContext(Inner);
 impl CuContext {
     pub fn new(device: &CuDevice) -> CuResult<Self> {
         let mut ctx = std::ptr::null_mut();
-        let mut affinity_param = ffi::CUexecAffinityParam {
-            type_: ffi::CUexecAffinityType_enum_CU_EXEC_AFFINITY_TYPE_SM_COUNT,
-            param: ffi::CUexecAffinityParam_st__bindgen_ty_1 {
-                smCount: ffi::CUexecAffinitySmCount {
-                    val: 0, // 0 means use all available SMs
-                },
-            },
-        };
+        // let mut affinity_param = ffi::CUexecAffinityParam {
+        //     type_: ffi::CUexecAffinityType_enum_CU_EXEC_AFFINITY_TYPE_SM_COUNT,
+        //     param: ffi::CUexecAffinityParam_st__bindgen_ty_1 {
+        //         smCount: ffi::CUexecAffinitySmCount {
+        //             val: 0, // 0 means use all available SMs
+        //         },
+        //     },
+        // };
     
         let mut params = ffi::CUctxCreateParams {
-            execAffinityParams: &mut affinity_param as *mut ffi::CUexecAffinityParam,
-            numExecAffinityParams: 1,
+            execAffinityParams: std::ptr::null_mut(),
+            numExecAffinityParams: 0,
             cigParams: std::ptr::null_mut(),
         };
         let res = unsafe {
