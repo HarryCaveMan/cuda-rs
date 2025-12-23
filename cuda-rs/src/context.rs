@@ -29,7 +29,7 @@ impl CuContext {
             cigParams: std::ptr::null_mut()
         };
         let res = unsafe {
-            ffi::cuCtxCreate_v4(&mut ctx, &mut params, device.get_raw())
+            ffi::cuCtxCreate_v4(&mut ctx, &mut params, 0, device.get_raw())
         };
         let ctx = CuContext(Inner::Owned(Arc::new(CUcontext(ctx))));
 
