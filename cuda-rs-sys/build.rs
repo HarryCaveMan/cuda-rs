@@ -18,11 +18,19 @@ fn find_dir(env_key: &'static str, candidates: Vec<&'static str>) -> Option<Path
 }
 
 fn main() {
+    let cuda_lib_dir = find_dir(
+        "CUDA_LIB_PATH",
+        vec!["/usr/local/cuda/lib64", "/usr/local/cuda/lib"],
+    ).expect("Could not find CUDA library path");
+
+    
+
     let cuda_include = find_dir(
         "CUDA_INCLUDE_PATH",
         vec!["/opt/cuda/include", "/usr/local/cuda/include"],
     ).expect("Could not find CUDA include path");
 
+    println!("cargo:rustc-link-search=native={}", cuda_lib_dir.to_string_lossy());
     println!("cargo:rustc-link-lib=dylib=cuda");
 
     let bindings = bindgen::Builder::default()
