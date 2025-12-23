@@ -28,6 +28,7 @@ fn main() {
         vec!["/usr/local/cuda-13.1/include"],
     ).expect("Could not find CUDA include path");
 
+    println!("cargo:rustc-link-lib=dylib=cuda");
     println!("cargo:rustc-link-lib=dylib=cudart");
     println!("cargo:rustc-link-arg=-L{}", cuda_lib_dir.to_string_lossy());
     println!("cargo:rustc-link-arg=-Wl,-rpath,{}", cuda_lib_dir.to_string_lossy());
