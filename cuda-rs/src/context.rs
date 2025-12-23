@@ -25,7 +25,7 @@ impl CuContext {
         let mut ctx = std::ptr::null_mut();
         let params: ffi::CUctxCreateParams = ffi::CUctxCreateParams {
             execAffinityParams: {0} as *mut ffi::CUexecAffinityParam,
-            numAffinityParams: 1 as std::os::raw::c_int,
+            numExecAffinityParams: 1 as std::os::raw::c_int,
             cigParams: std::ptr::null_mut()
         };
         let res = unsafe {
