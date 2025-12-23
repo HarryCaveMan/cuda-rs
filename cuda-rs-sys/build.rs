@@ -28,11 +28,10 @@ fn main() {
         vec!["/usr/local/cuda-13.1/include"],
     ).expect("Could not find CUDA include path");
 
+    println!("cargo:rustc-link-search=native={}", cuda_lib_dir.to_string_lossy());
+println!("cargo:rustc-link-arg=-Wl,-rpath,{}", cuda_lib_dir.to_string_lossy());
     println!("cargo:rustc-link-lib=dylib=cuda");
     println!("cargo:rustc-link-lib=dylib=cudart");
-    println!("cargo:rustc-link-arg=-L{}", cuda_lib_dir.to_string_lossy());
-    println!("cargo:rustc-link-arg=-Wl,-rpath,{}", cuda_lib_dir.to_string_lossy());
-
     let bindings = bindgen::Builder::default()
         .clang_arg(format!("-I{}", cuda_include.to_string_lossy()))
         .header(cuda_include.join("cuda.h").to_string_lossy())
